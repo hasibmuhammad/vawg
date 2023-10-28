@@ -1,12 +1,9 @@
-import { useState } from "react";
-import Logo from "./components/Header/Logo/Logo";
-import Search from "./components/Header/Search/Search";
+import Header from "./components/Header/Header";
 
 function App() {
   return (
-    <div className="max-w-7xl mx-auto font-sans text-white">
-      <Logo />
-      <Search />
+    <div className="max-w-screen-xl mx-auto font-sans text-white">
+      <Header />
     </div>
   );
 }

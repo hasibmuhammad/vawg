@@ -1,7 +1,7 @@
 import { AiOutlineSearch } from "react-icons/ai";
 const Search = () => {
   return (
-    <div className="relative">
+    <div className="relative w-full">
       <span className="absolute top-5 left-5 ">
         <AiOutlineSearch />
       </span>
