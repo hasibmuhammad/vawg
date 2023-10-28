@@ -4,10 +4,12 @@ import { MdFavoriteBorder } from "react-icons/md";
 import { useState } from "react";
 
 const Game = ({
-  game: { id, name, background_image, rating, genres },
+  game: { id, name, background_image, rating, genres, metacritic },
   handleFavorite,
 }) => {
   const [fav, setFav] = useState(false);
+
+  console.log(metacritic);
   return (
     <div className="card bg-[#202020] rounded-lg">
       <figure>
