@@ -12,6 +12,7 @@ function App() {
     `https://api.rawg.io/api/games?key=${API_KEY}`
   );
   const [isLoading, setIsLoading] = useState(false);
+  const [favorites, setFavorites] = useState([]);
 
   useEffect(() => {
     setIsLoading(true);
@@ -24,15 +25,27 @@ function App() {
         setPrevious(data.previous);
       })
       .catch((error) => console.error("Error fetching data:", error))
-      .finally(() => setIsLoading(false));
+      .finally(() => {
+        setIsLoading(false);
+        window.scrollTo(0, 0);
+      });
   }, [url]);
 
   const handleNext = (next) => setUrl(next);
   const handlePrevious = (previous) => setUrl(previous);
+  const handleFavorite = (id) => {
+    if (!favorites.includes(id)) {
+      setFavorites([...favorites, id]);
+    }
+    if (favorites.includes(id)) {
+      const filterfavs = favorites.filter((f) => f !== id);
+      setFavorites([...filterfavs]);
+    }
+  };
 
   return (
     <div className="max-w-screen-xl mx-auto font-sans">
-      <Header />
+      <Header favorites={favorites} />
       {isLoading && <p className="mx-4">Loading...</p>}
       <Games
         games={games}
@@ -41,6 +54,7 @@ function App() {
         next={next}
         previous={previous}
         isLoading={isLoading}
+        handleFavorite={handleFavorite}
       />
     </div>
   );

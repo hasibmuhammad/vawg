@@ -4,6 +4,7 @@ const Games = ({
   games,
   handleNext,
   handlePrevious,
+  handleFavorite,
   next,
   previous,
   isLoading,
@@ -12,7 +13,7 @@ const Games = ({
     <div className="my-8">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mx-4">
         {games.map((gm) => (
-          <Game key={gm.id} game={gm} />
+          <Game key={gm.id} game={gm} handleFavorite={handleFavorite} />
         ))}
       </div>
       {!isLoading && (
