@@ -4,6 +4,7 @@ import Header from "./components/Header/Header";
 import Loading from "./components/Loading/Loading";
 import Banner from "./components/Banner/Banner";
 import Footer from "./components/Footer/Footer";
+import NotFound from "./components/NotFound/NotFound";
 
 function App() {
   const API_KEY = "5e9b19fb0d174acf954bf517e4653318";
@@ -24,9 +25,11 @@ function App() {
     fetch(`${url}`)
       .then((res) => res.json())
       .then((data) => {
-        setGames(data.results);
-        setNext(data.next);
-        setPrevious(data.previous);
+        if (data.results.length > 0) {
+          setGames(data.results);
+          setNext(data.next);
+          setPrevious(data.previous);
+        }
       })
       .catch((error) => console.error("Error fetching data:", error))
       .finally(() => {
@@ -72,7 +75,9 @@ function App() {
       <Header handleSearch={handleSearch} favorites={favorites} />
       {!isLoading && <Banner games={games} />}
       <Loading isLoading={isLoading} />
-      {!isLoading && (
+      {!isLoading && games.length === 0 ? (
+        <NotFound />
+      ) : (
         <Games
           games={games}
           handleNext={handleNext}
