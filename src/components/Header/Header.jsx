@@ -4,7 +4,7 @@ import Favorite from "../Header/Favorite/Favorite";
 import WishList from "../Header/Wishlist/Wishlist";
 const Header = ({ favorites }) => {
   return (
-    <div className="flex flex-col md:flex-row justify-center items-center gap-4 py-4 mx-4">
+    <div className="flex flex-col md:flex-row justify-center items-center gap-4 py-2 mx-4 sticky -top-2 z-10">
       <Logo />
       <Search />
       <div className="flex justify-center items-center gap-4">

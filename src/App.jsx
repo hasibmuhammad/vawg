@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Games from "./components/Games/Games";
 import Header from "./components/Header/Header";
+import Loading from "./components/Loading/Loading";
+import Banner from "./components/Banner/Banner";
 
 function App() {
   const API_KEY = "5e9b19fb0d174acf954bf517e4653318";
@@ -46,16 +48,19 @@ function App() {
   return (
     <div className="max-w-screen-xl mx-auto font-sans">
       <Header favorites={favorites} />
-      {isLoading && <p className="mx-4">Loading...</p>}
-      <Games
-        games={games}
-        handleNext={handleNext}
-        handlePrevious={handlePrevious}
-        next={next}
-        previous={previous}
-        isLoading={isLoading}
-        handleFavorite={handleFavorite}
-      />
+      {!isLoading && <Banner games={games} />}
+      <Loading isLoading={isLoading} />
+      {!isLoading && (
+        <Games
+          games={games}
+          handleNext={handleNext}
+          handlePrevious={handlePrevious}
+          next={next}
+          previous={previous}
+          isLoading={isLoading}
+          handleFavorite={handleFavorite}
+        />
+      )}
     </div>
   );
 }

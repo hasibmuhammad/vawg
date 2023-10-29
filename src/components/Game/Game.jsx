@@ -1,15 +1,13 @@
 import { AiFillStar } from "react-icons/ai";
 import Favorite from "../Header/Favorite/Favorite";
-import { MdFavoriteBorder } from "react-icons/md";
+import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { useState } from "react";
 
 const Game = ({
-  game: { id, name, background_image, rating, genres, metacritic },
+  game: { id, name, background_image, rating, genres },
   handleFavorite,
 }) => {
   const [fav, setFav] = useState(false);
-
-  console.log(metacritic);
   return (
     <div className="card bg-[#202020] rounded-lg">
       <figure>
@@ -43,7 +41,7 @@ const Game = ({
               setFav(!fav);
             }}
           >
-            <MdFavoriteBorder />
+            {!fav ? <MdFavoriteBorder /> : <MdFavorite />}
           </div>
         </div>
       </div>
