@@ -7,7 +7,7 @@ const Banner = ({ games }) => {
   let idx = Math.floor(Math.random() * games.length);
   useEffect(() => {
     setScreenshots(games[idx]?.short_screenshots);
-  }, [idx]);
+  }, [screenshots]);
   return (
     <div className="mx-4">
       <div className="carousel w-full">

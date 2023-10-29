@@ -1,5 +1,4 @@
 import { AiFillStar } from "react-icons/ai";
-import Favorite from "../Header/Favorite/Favorite";
 import { MdFavorite, MdFavoriteBorder } from "react-icons/md";
 import { useState } from "react";
 

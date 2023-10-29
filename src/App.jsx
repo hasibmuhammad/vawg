@@ -3,6 +3,7 @@ import Games from "./components/Games/Games";
 import Header from "./components/Header/Header";
 import Loading from "./components/Loading/Loading";
 import Banner from "./components/Banner/Banner";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   const API_KEY = "5e9b19fb0d174acf954bf517e4653318";
@@ -15,6 +16,7 @@ function App() {
   );
   const [isLoading, setIsLoading] = useState(false);
   const [favorites, setFavorites] = useState([]);
+  const [term, setTerm] = useState("");
 
   useEffect(() => {
     setIsLoading(true);
@@ -29,12 +31,23 @@ function App() {
       .catch((error) => console.error("Error fetching data:", error))
       .finally(() => {
         setIsLoading(false);
-        window.scrollTo(0, 0);
+
+        if (term) {
+          window.scrollTo({
+            top: 450,
+            behavior: "smooth",
+          });
+        }
       });
   }, [url]);
 
+  // Handle the link of next chunk of data
   const handleNext = (next) => setUrl(next);
+
+  //  Handle the link of previous chunk of data
   const handlePrevious = (previous) => setUrl(previous);
+
+  // Handle Favorite
   const handleFavorite = (id) => {
     if (!favorites.includes(id)) {
       setFavorites([...favorites, id]);
@@ -45,9 +58,18 @@ function App() {
     }
   };
 
+  // Handle the search
+  const handleSearch = (term) => {
+    setTerm(term);
+    setTimeout(() => {
+      const newUrl = `${url}&search=${term}`;
+      setUrl(newUrl);
+    }, 500);
+  };
+
   return (
     <div className="max-w-screen-xl mx-auto font-sans">
-      <Header favorites={favorites} />
+      <Header handleSearch={handleSearch} favorites={favorites} />
       {!isLoading && <Banner games={games} />}
       <Loading isLoading={isLoading} />
       {!isLoading && (
@@ -61,6 +83,7 @@ function App() {
           handleFavorite={handleFavorite}
         />
       )}
+      {!isLoading && <Footer />}
     </div>
   );
 }
