@@ -20,9 +20,10 @@ function App() {
   const [term, setTerm] = useState("");
 
   useEffect(() => {
-    setIsLoading(true);
+    const controller = new AbortController();
 
-    fetch(`${url}`)
+    setIsLoading(true);
+    fetch(`${url}`, { signal: controller.signal })
       .then((res) => res.json())
       .then((data) => {
         if (data.results.length > 0) {
@@ -31,7 +32,9 @@ function App() {
           setPrevious(data.previous);
         }
       })
-      .catch((error) => console.error("Error fetching data:", error))
+      .catch((error) => {
+        console.error(error, controller.signal.aborted);
+      })
       .finally(() => {
         setIsLoading(false);
 
@@ -41,6 +44,8 @@ function App() {
             behavior: "smooth",
           });
         }
+
+        return () => controller.abort();
       });
   }, [url]);
 
@@ -88,7 +93,7 @@ function App() {
           handleFavorite={handleFavorite}
         />
       )}
-      {!isLoading && <Footer />}
+      {!isLoading && games.length !== 0 && <Footer />}
     </div>
   );
 }
