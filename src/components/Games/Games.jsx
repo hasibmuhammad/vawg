@@ -22,7 +22,7 @@ const Games = ({
               <h1 className="text-7xl font-bold">New and trending</h1>
               <p className="ml-1">VAWG Video Games</p>
             </div>
-            <div className="flex justify-normal gap-2 items-center text-2xl">
+            <div className="hidden md:flex justify-normal gap-2 items-center text-2xl">
               <button
                 title="Grid View"
                 onClick={() => setListView(false)}

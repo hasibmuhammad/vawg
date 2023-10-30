@@ -6,6 +6,7 @@ const Footer = () => {
         <a href="https://github.com/hasibmuhammad" target="_blank">
           Hasib Muhammad {"</>"}
         </a>{" "}
+        <br />
         All rights reserved.
       </p>
     </div>
