@@ -4,7 +4,7 @@ import Favorite from "../Header/Favorite/Favorite";
 
 const Header = ({ favorites, handleSearch }) => {
   return (
-    <div className="flex flex-col md:flex-row justify-center items-center gap-4 py-2 mx-4 sticky -top-2 z-10">
+    <div className="flex justify-center items-center gap-4 py-2 mx-4 sticky -top-2 z-10">
       <Logo />
       <Search handleSearch={handleSearch} />
       <div className="flex justify-center items-center gap-4">
